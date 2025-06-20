@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Logged Out - Remote Work Hub</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+             background: url('images/image-hero-desktop.png') no-repeat center center fixed;
+            background-size: cover;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            color: #333;
+            transition: background-color 0.5s ease;
+        }
+        
+        .logout-container {
+            text-align: center;
+            max-width: 500px;
+            padding: 50px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+        
+        .logout-icon {
+            font-size: 4rem;
+            color: #3498db;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+        
+        .message {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            margin-bottom: 30px;
+            color: #7f8c8d;
+        }
+        
+        .login-again {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 20px;
+        }
+        
+        .login-again:hover {
+            background-color: #2980b9;
+            transform: translateY(-2px);
+        }
+        
+        .login-again:active {
+            transform: translateY(0);
+        }
+        
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9rem;
+            color: #95a5a6;
+        }
+        
+        .security-note {
+            font-size: 0.8rem;
+            color: #bdc3c7;
+            margin-top: 30px;
+        }
+        
+        .countdown {
+            font-weight: bold;
+            color: #3498db;
+        }
+        
+        .visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="logout-container" id="logoutContainer">
+        <div class="logout-icon" id="logoutIcon">⎋</div>
+        <h1>You've Been Logged Out</h1>
+        
+        <div class="message">
+            <p>You have successfully logged out of Remote Work Hub.</p>
+            <p>For security, please close your browser if you're on a shared computer.</p>
+            <p>You will be automatically redirected to the home page in <span class="countdown" id="countdown">5</span> seconds.</p>
+        </div>
+        
+        <a href="home.html" class="login-again" id="loginAgain">Log In Again</a>
+        
+        <div class="security-note">
+            <p>Session securely terminated</p>
+        </div>
+        
+        <div class="footer">
+            <p>© 2025 Remote Work Hub | Group 15</p>
+            <p>Department of Computer Science, Lead City University</p>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animate the container on load
+            const container = document.getElementById('logoutContainer');
+            const logoutIcon = document.getElementById('logoutIcon');
+            
+            setTimeout(() => {
+                container.classList.add('visible');
+                
+                // Add subtle animation to the icon
+                logoutIcon.addEventListener('mouseover', () => {
+                    logoutIcon.style.transform = 'rotate(-15deg)';
+                });
+                
+                logoutIcon.addEventListener('mouseout', () => {
+                    logoutIcon.style.transform = 'rotate(0)';
+                });
+            }, 100);
+            
+            // Countdown and redirect functionality(fixed)
+            const countdownElement = document.getElementById('countdown');
+            const loginAgainBtn = document.getElementById('loginAgain');
+            let seconds = 5;
+            
+            const countdown = setInterval(() => {
+                seconds--;
+                countdownElement.textContent = seconds;
+                
+                if (seconds <= 0) {
+                    clearInterval(countdown);
+                    window.location.href = 'home.html';
+                }
+            }, 1000);
+            
+            // Cancel the redirect if user clicks to login again
+            loginAgainBtn.addEventListener('click', (e) => {
+                clearInterval(countdown);
+                // You could add any additional cleanup here
+            });
+            
+            // Change background color gradually
+            let hue = 0;
+            const bgInterval = setInterval(() => {
+                hue = (hue + 0.5) % 360;
+                document.body.style.backgroundColor;
+            }, 100);
+            
+            // Clean up interval when leaving the page
+            window.addEventListener('beforeunload', () => {
+                clearInterval(bgInterval);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - REMOTE WORK HUB</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url('IMAGES/default.jpeg.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: white;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .login-container {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            text-align: center;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        h1 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        input {
+            display: block;
+            width: 100%;
+            margin: 1rem 0;
+            padding: 0.8rem;
+            border-radius: 6px;
+            border: none;
+            font-size: 1rem;
+            box-sizing: border-box;
+        }
+        
+        .captcha-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin: 1rem 0;
+        }
+
+        .captcha-box {
+            flex: 1;
+            padding: 0.8rem;
+            background: #f0f0f0;
+            border: 1px dashed #999;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            font-size: 1.5rem;
+            letter-spacing: 5px;
+            text-align: center;
+            user-select: none;
+            color: #333;
+        }
+
+        .refresh-btn {
+            padding: 0.8rem;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            color: #333;
+        }
+
+        .refresh-btn:hover {
+            background: #ddd;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        .checkbox-group input {
+            width: auto;
+            margin: 0;
+        }
+
+        .error-message {
+            color: #ff4444;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            display: none;
+        }
+
+        button {
+            background-color: #007BFF;
+            color: #f7fbff;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 1rem;
+            width: 100%;
+            margin-top: 1rem;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        <form id="loginForm">
+            <input type="text" id="studentid" placeholder="Enter Student ID" required />
+            <input type="password" id="password" placeholder="Enter Password" required />
+            <input type="text" id="matric" placeholder="Enter Matric Number" required />
+            
+            <div class="form-section">
+                <h3>Student Verification</h3>
+                
+                <div class="captcha-container">
+                    <div class="captcha-box" id="captchaText"></div>
+                    <button type="button" class="refresh-btn" id="refreshCaptcha">↻ Refresh</button>
+                </div>
+                
+                <div class="form-group">
+                    <input type="text" id="captchaInput" placeholder="Enter CAPTCHA" required>
+                    <span id="captchaError" class="error-message"></span>
+                </div>
+                
+                <div class="checkbox-group">
+                    <input type="checkbox" id="agreeTerms" name="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the Policies and Terms of Service</label>
+                </div>
+            </div>
+
+           <a href="index.html">
+             <button type="submit">Login</button>
+        </form>
+           </a>
+    </div>
+
+    <script>
+        // CAPTCHA variables
+        let currentCaptcha = '';
+        const captchaText = document.getElementById('captchaText');
+        const refreshCaptcha = document.getElementById('refreshCaptcha');
+        const captchaInput = document.getElementById('captchaInput');
+        const captchaError = document.getElementById('captchaError');
+        
+        // Generate random CAPTCHA
+        function generateCaptcha() {
+            const chars = 'ABCDEFGHJKLMNPQRSTUVWXYZabcdefghjkmnpqrstuvwxyz234567890';
+            let captcha = '';
+            for (let i = 0; i < 6; i++) {
+                captcha += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            currentCaptcha = captcha;
+            captchaText.textContent = captcha;
+        }
+        
+        // Initialize CAPTCHA
+        generateCaptcha();
+        
+        // Refresh CAPTCHA
+        refreshCaptcha.addEventListener('click', generateCaptcha);
+        
+        // Validate CAPTCHA
+        function validateCaptcha() {
+            const userInput = captchaInput.value.trim();
+            
+            if (userInput === '') {
+                captchaError.textContent = 'Please enter the CAPTCHA';
+                captchaError.style.display = 'block';
+                return false;
+            }
+            
+            if (userInput !== currentCaptcha) {
+                captchaError.textContent = 'CAPTCHA does not match';
+                captchaError.style.display = 'block';
+                return false;
+            }
+            
+            captchaError.style.display = 'none';
+            return true;
+        }
+
+        // Handle form submission
+        document.getElementById('loginForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            
+            if (!validateCaptcha()) {
+                return;
+            }
+            
+            if (!document.getElementById('agreeTerms').checked) {
+                alert('You must agree to the terms and conditions');
+                return;
+            }
+
+            const userData = {
+                username: document.getElementById("studentid").value,
+                password: document.getElementById("password").value,
+                matric: document.getElementById("matric").value
+            };
+
+            // Store in localStorage (for demo; not secure for real-world use)
+            localStorage.setItem("userData", JSON.stringify(userData));
+
+            window.location.href = "index.html";
+        });
+    </script>
+</body>
+</html>

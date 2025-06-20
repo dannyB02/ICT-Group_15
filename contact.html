@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact Us - REMOTE WORK HUB</title>
+  <style>
+    /* Reset and base styles */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(
+          rgba(0, 0, 0, 0.6),
+          rgba(0, 0, 0, 0.6)
+        ),
+        url('images/contact.jpeg.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: rgba(30, 30, 50, 0.9);
+      padding: 40px 50px;
+      border-radius: 15px;
+      width: 100%;
+      max-width: 900px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.7);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      color: #e0e0e0;
+    }
+
+    .contact-info {
+      flex: 1 1 300px;
+      min-width: 280px;
+    }
+
+    .contact-info h2 {
+      font-size: 28px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid #007bff;
+      padding-bottom: 8px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .contact-info p {
+      font-size: 16px;
+      margin: 15px 0;
+      line-height: 1.6;
+      color: #cfd8dc;
+    }
+
+    .contact-info strong {
+      color: #ffffff;
+    }
+
+    .contact-form {
+      flex: 1 1 300px;
+      min-width: 280px;
+      background-color: #1a1a2e;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+    }
+
+    .contact-form h2 {
+      text-align: center;
+      margin-bottom: 25px;
+      font-size: 26px;
+      font-weight: 700;
+      color: #007bff;
+      letter-spacing: 1px;
+    }
+
+    .contact-form form {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: none;
+      border-radius: 8px;
+      font-size: 15px;
+      font-family: inherit;
+      background-color: #2c2c54;
+      color: #e0e0e0;
+      transition: background-color 0.3s ease, box-shadow 0.3s ease;
+      resize: vertical;
+    }
+
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder {
+      color: #a0a0a0;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      background-color: #3a3a72;
+      box-shadow: 0 0 8px #007bff;
+      color: #ffffff;
+    }
+
+    .contact-form button {
+      padding: 14px 0;
+      background-color: #007bff;
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: 700;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s ease, transform 0.2s ease;
+      letter-spacing: 1px;
+    }
+
+    .contact-form button:hover {
+      background-color: #0056b3;
+      transform: scale(1.05);
+    }
+
+    .contact-form button:active {
+      transform: scale(0.98);
+    }
+
+    @media screen and (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        padding: 30px 20px;
+      }
+      .contact-info,
+      .contact-form {
+        min-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Contact information and contact form">
+    <section class="contact-info" aria-labelledby="contact-info-title">
+      <h2 id="contact-info-title">Get in Touch</h2>
+      <p><strong>Phone:</strong> +234 800 123 4567, +234 806 076 3384</p>
+      <p><strong>Email:</strong> <a href="mailto:ojaysamuel281@gmail.com" style="color:#66aaff; text-decoration:none;">ojaysamuel281@gmail.com</a></p>
+      <p><strong>Location:</strong>  Department of Computer Science, Lead City University</p>
+      <p><strong>Instagram:</strong> @monar_chy, @RW_HUB,
+      <p><strong>WhatsApp:</strong> +234 706 300 0231
+    </section>
+
+    <section class="contact-form" aria-labelledby="contact-form-title">
+      <h2 id="contact-form-title">Send a Message</h2>
+      <form id="contactForm" novalidate>
+        <input type="text" id="name" name="name" placeholder="Your Name" required aria-required="true" />
+        <input type="email" id="email" name="email" placeholder="Your Email" required aria-required="true" />
+        <textarea id="message" name="message" rows="5" placeholder="Your Message" required aria-required="true"></textarea>
+        <button type="submit" aria-label="Send Message">Send Message</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    // Simple backend simulation for demonstration
+    document.getElementById('contactForm').addEventListener('submit', async function(event) {
+      event.preventDefault();
+
+      const name = document.getElementById("name");
+      const email = document.getElementById("email");
+      const message = document.getElementById("message");
+
+      if (!name.value.trim()) {
+        alert("Please enter your name.");
+        name.focus();
+        return;
+      }
+      if (!email.value.trim()) {
+        alert("Please enter your email.");
+        email.focus();
+        return;
+      }
+      // Basic email format check
+      const emailPattern = /^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/;
+      if (!emailPattern.test(email.value.trim())) {
+        alert("Please enter a valid email address.");
+        email.focus();
+        return;
+      }
+      if (!message.value.trim()) {
+        alert("Please enter your message.");
+        message.focus();
+        return;
+      }
+
+      try {
+        // Simulate backend processing delay
+        await new Promise(resolve => setTimeout(resolve, 1000));
+
+        // Simulate successful response
+        alert("Message sent successfully!");
+        name.value = '';
+        email.value = '';
+        message.value = '';
+      } catch (error) {
+        alert("An error occurred while sending the message. Please try again later.");
+        console.error('Error:', error);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/gallery.css">
+    <title>Image grid</title>
+</head>
+<body>
+    <div class="container">
+        <section class="hero">
+            <header>
+                <nav>
+                    <ul class="navbar-left-ul">
+                        <div class="logo">
+                        <h1 class="header-text"><img class="nav-header" src="images/logo.png" alt="logo"></h1>
+                    </div>
+                    </ul>
+                    <ul class="navbar-right">
+                      <span>
+                        <li id="home-button" class="nav-top-li"><a href="index.html"  color: white>Home</a></li>
+                      </span>
+
+                    </ul>
+                </nav>
+            </header>
+            <br>
+        <!-- Gallery Content -->
+        <main class="gallery-page">
+ 
+            <div class="gallery-grid">
+                <!-- Repeat this block for each image -->
+                <div class="gallery-item">
+                    <img src="images/gallery/image 10.png" alt="img1" onclick="openLightbox('images/photo1.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 3.png" alt="img2" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 2.jpg" alt="img3" onclick="openLightbox('images/photo1.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 4.png" alt="img4" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 5.png" alt="img5" onclick="openLightbox('images/photo1.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 6.png" alt="img6" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 8.png" alt="img7" onclick="openLightbox('images/photo1.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 7.png" alt="img8" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/image 9.png" alt="img9" onclick="openLightbox('images/photo2.jpg')">
+                </div> 
+                <div class="gallery-item">
+                    <img src="images/gallery/imageshub.webp" alt="img10" onclick="openLightbox('images/photo1.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/threee.webp" alt="img11" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/operation1.webp" alt="img12" onclick="openLightbox('images/photo1.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/zero.webp" alt="img13" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/OIP.jpeg" alt="img14" onclick="openLightbox('images/photo1.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/online.webp" alt="img15" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/hub.jpeg" alt="img16" onclick="openLightbox('images/photo2.jpg')">
+                </div>  
+                <div class="gallery-item">
+                    <img src="images/gallery/Images1.jpeg" alt="img17" onclick="openLightbox('images/photo2.jpg')">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/gallery/Images2.jpeg" alt="img18" onclick="openLightbox('images/photo2.jpg')">
+                </div>             
+            </div>
+        </main>
+    
+        <!-- Lightbox Modal (Hidden by Default) -->
+        <div id="lightbox" class="lightbox">
+            <span class="close-btn" onclick="closeLightbox()">&times;</span>
+            <img id="lightbox-img" class="lightbox-content">
+        </div>
+    
+        <!-- Shared Footer -->
+        <footer>
+            <p>&copy; 2025 GROUP 15 WEBSITE.</p>
+        </footer>
+
+</body>
+</html>
