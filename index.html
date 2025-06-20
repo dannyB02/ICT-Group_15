@@ -155,18 +155,11 @@
 </html>
 
 
-<!-- 73 
-<ul class="hamburger-nav">
-    <li id="features-hamburger-button" class="hamburger-li"><a href="#">Features <img class="hamburger-features-arrow-down" src="./images/icon-arrow-down.svg" alt="up arrow"><img class="hamburger-features-arrow-up hide" src="./images/icon-arrow-up.svg" alt=""></a></li>
-        <ul class="features-hamburger hide">
-            <li class="mobile-features-li"><a href="#"><img src="./images/icon-todo.svg" alt="Todo list"> Todo List</a></li>
-            <li class="mobile-features-li"><a href="#"><img src="./images/icon-calendar.svg" alt="Calendar"> Calendar</a></li>
-            <li class="mobile-features-li"><a href="#"><img src="./images/icon-reminders.svg" alt="Reminders"> Reminders</a></li>
-            <li class="mobile-features-li"><a href="#"><img src="./images/icon-planning.svg" alt="Planning"> Planning</a></li>
-        </ul>
-    <li id="company-hamburger-button" class="hamburger-li"><a href="#">Company <img class="company-hamburger-arrow-down" src="./images/icon-arrow-down.svg" alt=""><img class="hamburger-company-arrow-up hide" src="./images/icon-arrow-up.svg" alt=""></a></li>
-        <ul class="company-hamburger hide">
-            <li class="mobile-complany-li"><a href="#">History</a></li>
-            <li class="mobile-complany-li"><a href="#">Our Team</a></li>
-            <li class="mobile-complany-li"><a href="#">Blog</a></li>
-        </ul> -->
+<script>
+  const menuIcon = document.querySelector('.menu-icon'); // or your class
+  const navLinks = document.querySelector('.nav-links');
+
+  menuIcon.addEventListener('click', () => {
+    navLinks.classList.toggle('active');
+  });
+</script>
